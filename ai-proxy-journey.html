@@ -120,22 +120,17 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
 .panel-seller{margin-top:18px;padding:13px 15px;border-left:3px solid var(--ft-purple);background:rgba(144,99,205,0.06);border-radius:0 8px 8px 0;font-size:12.5px;color:#c4a8e8;line-height:1.65}
 .panel-seller::before{content:'💡 SELLER INSIGHT';display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--ft-purple);margin-bottom:5px}
 
-/* ── GLOSSARY TOOLTIPS ── */
+/* ── GLOSSARY TOOLTIPS (floating approach — avoids all overflow clipping) ── */
 .g-term{border-bottom:2px dotted rgba(48,127,226,0.55);cursor:help;position:relative;display:inline}
-.g-tip{visibility:hidden;opacity:0;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);width:290px;background:#161c30;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;font-style:normal;font-size:12px;color:var(--text-secondary);line-height:1.6;z-index:200;pointer-events:none;transition:visibility 0s .15s,opacity .2s;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
-.g-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#161c30}
-.g-term:hover .g-tip{visibility:visible;opacity:1;transition-delay:0s}
-.g-tip .g-label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ft-blue);margin-bottom:4px}
-.g-below .g-tip{bottom:auto;top:calc(100% + 10px)}
-.g-below .g-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#161c30}
-.g-right .g-tip{left:0;transform:none}
-.g-right .g-tip::after{left:20px;transform:none}
-/* Panel tooltips: show BELOW (upward clips against overflow-y:auto boundary) */
-.info-panel .g-tip{bottom:auto;top:calc(100% + 10px);left:auto;right:0;transform:none}
-.info-panel .g-tip::after{top:auto;bottom:100%;left:auto;right:24px;transform:none;border-top-color:transparent;border-bottom-color:#161c30}
-/* Act header tooltips: show BELOW (near top of scrollable .main) */
-.act-subtitle .g-tip,.seller-tip .g-tip{bottom:auto;top:calc(100% + 10px)}
-.act-subtitle .g-tip::after,.seller-tip .g-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#161c30}
+/* Inline tips hidden — the floating #floatTip div handles display */
+.g-tip{display:none}
+/* Floating tooltip appended to <body> */
+#floatTip{position:fixed;z-index:9999;width:290px;background:#161c30;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--text-secondary);line-height:1.6;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:opacity .18s ease;font-family:'Inter',system-ui,sans-serif}
+#floatTip.show{opacity:1;visibility:visible}
+#floatTip .g-label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ft-blue);margin-bottom:4px}
+#floatTip::after{content:'';position:absolute;border:6px solid transparent}
+#floatTip.arrow-down::after{top:100%;left:var(--arrow-left,50%);transform:translateX(-50%);border-top-color:#161c30}
+#floatTip.arrow-up::after{bottom:100%;left:var(--arrow-left,50%);transform:translateX(-50%);border-bottom-color:#161c30}
 
 /* ── CONNECTORS ── */
 @keyframes dash-flow{to{stroke-dashoffset:-20}}
@@ -152,7 +147,11 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
 .intro-desc{font-size:13.5px;color:var(--text-secondary);line-height:1.75;margin-bottom:24px}
 .intro-cta{display:inline-block;padding:13px 32px;border-radius:10px;background:linear-gradient(135deg,#307FE2,#2466B8);color:#fff;font-size:15px;font-weight:600;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:filter .2s,transform .2s}
 .intro-cta:hover{filter:brightness(1.15);transform:translateY(-1px)}
-.intro-hint{margin-top:16px;font-size:12px;color:var(--text-dim);line-height:1.6}
+.intro-hints{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:24px;padding:16px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px}
+.intro-hint-item{display:flex;flex-direction:column;align-items:center;gap:8px}
+.intro-hint-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:18px}
+.intro-hint-label{font-size:11px;font-weight:500;color:var(--text-dim);letter-spacing:0.3px}
+.intro-meta{margin-top:16px;font-size:12px;color:var(--text-dim);font-style:italic}
 
 /* ── SCROLLBAR ── */
 .main::-webkit-scrollbar,.info-panel::-webkit-scrollbar{width:6px}
@@ -182,6 +181,8 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
   <div id="panelContent"></div>
 </div>
 
+<div id="floatTip"></div>
+
 <div class="intro-overlay" id="introOverlay">
   <div class="intro-card">
     <div class="intro-icon">🤖</div>
@@ -189,7 +190,12 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
     <div class="intro-title">The AI Proxy Journey</div>
     <div class="intro-desc">Your customers are already using AI — coding assistants, SOC copilots, enterprise chatbots, and autonomous agents. But every prompt, every response, and every API call is a potential data leak, compliance violation, or attack vector.<br><br>Between the user and the model, there's a critical control point most organizations are missing.</div>
     <button class="intro-cta" id="introStart">Begin the Journey →</button>
-    <div class="intro-hint">Click numbered hotspots to explore each concept.<br>The detail panel on the right tells the story.</div>
+    <div class="intro-hints">
+      <div class="intro-hint-item"><div class="intro-hint-icon">👆</div><span class="intro-hint-label">Click hotspots</span></div>
+      <div class="intro-hint-item"><div class="intro-hint-icon">📖</div><span class="intro-hint-label">Read insights</span></div>
+      <div class="intro-hint-item"><div class="intro-hint-icon">→</div><span class="intro-hint-label">Advance acts</span></div>
+    </div>
+    <div class="intro-meta">~5 min · 4 acts · Arrow keys to navigate</div>
   </div>
 </div>
 
@@ -699,6 +705,61 @@ document.addEventListener('keydown', e => {
 });
 
 window.addEventListener('resize', () => updateConns());
+
+/* ── FLOATING TOOLTIP (avoids overflow clipping) ── */
+(function() {
+  const tip = document.getElementById('floatTip');
+  const GAP = 10;
+
+  function showTip(termEl) {
+    const inlineTip = termEl.querySelector('.g-tip');
+    if (!inlineTip) return;
+    tip.innerHTML = inlineTip.innerHTML;
+    tip.classList.add('show');
+
+    const r = termEl.getBoundingClientRect();
+    const tw = 290;
+    const tipH = tip.offsetHeight;
+
+    // Prefer above the term; fall back to below if not enough room
+    let top, arrowDir;
+    if (r.top - tipH - GAP > 0) {
+      top = r.top - tipH - GAP;
+      arrowDir = 'arrow-down'; // arrow points down toward term
+    } else {
+      top = r.bottom + GAP;
+      arrowDir = 'arrow-up'; // arrow points up toward term
+    }
+
+    // Horizontal: center on the term, but clamp to viewport
+    let left = r.left + r.width / 2 - tw / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+
+    tip.style.top = top + 'px';
+    tip.style.left = left + 'px';
+    tip.className = 'show ' + arrowDir;
+
+    // Adjust arrow horizontal position to point at the term center
+    const arrowLeft = r.left + r.width / 2 - left;
+    tip.style.setProperty('--arrow-left', arrowLeft + 'px');
+  }
+
+  function hideTip() {
+    tip.classList.remove('show');
+    tip.className = '';
+  }
+
+  // Event delegation — works for dynamically rendered content
+  document.addEventListener('mouseover', function(e) {
+    const term = e.target.closest('.g-term');
+    if (term) showTip(term);
+  });
+  document.addEventListener('mouseout', function(e) {
+    const term = e.target.closest('.g-term');
+    if (term) hideTip();
+  });
+})();
+
 render();
 </script>
 </body>
