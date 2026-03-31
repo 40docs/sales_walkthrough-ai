@@ -355,29 +355,28 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
         <div class="armory-section-body"><div class="armory-section-inner">
           <div class="armory-discovery">
             <div class="armory-persona">CISO / Security Leadership</div>
-            <div class="armory-question">How many AI models are your teams using today — and do you have a centralized inventory?</div>
-            <div class="armory-question">If a regulator asked for a report of all AI interactions involving customer data from the last 90 days, could you produce it?</div>
-            <div class="armory-question">What's your current policy for AI usage — and how do you enforce it technically?</div>
-            <div class="armory-question">Where does AI governance sit in your security architecture today?</div>
+            <div class="armory-question">Which AI tools are your teams using today? Do you have a way to track that centrally?</div>
+            <div class="armory-question">Do you have an AI usage policy? How is it enforced — technically or just on paper?</div>
+            <div class="armory-question">If a regulator asked for a log of AI interactions involving customer data from the last 90 days, could you produce it?</div>
+            <div class="armory-question">Where does AI fit in your security architecture — is it treated like any other SaaS app, or does it have its own controls?</div>
           </div>
           <div class="armory-discovery">
             <div class="armory-persona">SOC Manager / Security Operations</div>
-            <div class="armory-question">Are your analysts using AI copilots for investigation or alert triage?</div>
-            <div class="armory-question">What happens if an AI-powered SOAR playbook executes a remediation that an attacker manipulated via prompt injection?</div>
-            <div class="armory-question">Do you have visibility into what data your SOC tools send to external AI models?</div>
+            <div class="armory-question">Are any of your security tools — SIEM, SOAR, or analyst workflows — using AI or LLM capabilities today?</div>
+            <div class="armory-question">If they are, do you have visibility into what data those tools send to external AI models?</div>
+            <div class="armory-question">How would you detect if an AI-assisted workflow produced a recommendation based on manipulated input?</div>
           </div>
           <div class="armory-discovery">
             <div class="armory-persona">VP Engineering / Platform</div>
-            <div class="armory-question">How many developers use AI coding assistants — Copilot, Cursor, or similar?</div>
-            <div class="armory-question">Do you know what source code and credentials are being sent with each code completion?</div>
-            <div class="armory-question">What's your process when an AI tool suggests code with a security vulnerability?</div>
-            <div class="armory-question">How do you manage which AI models different teams are authorized to use?</div>
+            <div class="armory-question">How many of your developers use AI coding assistants — Copilot, Cursor, or similar?</div>
+            <div class="armory-question">What code context gets sent with each completion? Have you reviewed what's included?</div>
+            <div class="armory-question">What's the process when an AI tool suggests code that introduces a vulnerability — would anyone catch it?</div>
           </div>
           <div class="armory-discovery">
             <div class="armory-persona">Compliance / GRC</div>
-            <div class="armory-question">How are you tracking AI usage against GDPR, HIPAA, SOX, or PCI-DSS requirements?</div>
+            <div class="armory-question">Do any of your compliance frameworks — SOC 2, HIPAA, PCI-DSS — require controls around AI usage? How are you addressing that?</div>
             <div class="armory-question">Do you have audit trails for AI interactions that touch regulated data?</div>
-            <div class="armory-question">Are your data residency requirements enforced for AI API calls?</div>
+            <div class="armory-question">For organizations with data residency requirements: are those enforced for AI API calls, or just for traditional data flows?</div>
           </div>
         </div></div>
       </div>
@@ -392,27 +391,27 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
         <div class="armory-section-body"><div class="armory-section-inner">
           <div class="armory-objection">
             <div class="armory-they-say">"We're not really using AI that much."</div>
-            <div class="armory-you-say">Every organization we talk to says that — then discovers 3-5x more AI usage than they expected. Shadow AI is the new shadow IT. Developers use Copilot. Marketing uses ChatGPT. SOC analysts query models daily. Ask your CISO: can you produce a report of every AI interaction from the last 90 days?</div>
+            <div class="armory-you-say">That's worth validating. IBM found that 1 in 5 breaches now involve shadow AI — tools adopted without security's knowledge. The question isn't whether your teams are using AI. It's whether you have visibility into how much and what data is going in. Can you produce a report of every AI interaction from the last 90 days? If not, that's the gap worth exploring.</div>
           </div>
           <div class="armory-objection">
             <div class="armory-they-say">"We already have DLP for this."</div>
-            <div class="armory-you-say">Traditional DLP watches email and file transfers. It doesn't inspect AI prompts — which look like normal API calls. When a developer sends source code to Copilot, your DLP never sees it. The AI proxy adds DLP specifically for LLM interactions — prompt by prompt, in real time.</div>
+            <div class="armory-you-say">DLP is a strong foundation — and endpoint DLP can absolutely see what users type into AI tools. The gap isn't visibility, it's context. DLP classifies data patterns, but it doesn't understand prompt structure. It can't detect a prompt injection hiding inside a document. It doesn't validate whether an AI response contains hallucinated data or insecure code before it reaches a downstream system. The proxy adds an AI-aware governance layer on top of what DLP already does well — they're complementary, not competing.</div>
           </div>
           <div class="armory-objection">
             <div class="armory-they-say">"Our AI provider says our data is safe."</div>
-            <div class="armory-you-say">Provider policies are table stakes, not a security strategy. They don't prevent an employee from pasting credentials into a prompt. They don't block prompt injection attacks. And they don't give you an audit trail for compliance. The proxy is YOUR control layer — independent of any provider's promises.</div>
+            <div class="armory-you-say">Provider commitments matter — opt-out of training, data encryption, SOC 2 compliance. But those controls protect data at rest on the provider's side. They don't prevent an employee from putting sensitive data into a prompt in the first place. They don't detect prompt injection attacks. And they don't give you a centralized audit trail across multiple providers. The proxy is your governance layer — it works regardless of which provider or model your teams choose.</div>
           </div>
           <div class="armory-objection">
             <div class="armory-they-say">"This feels like it would slow down our developers."</div>
-            <div class="armory-you-say">Inline inspection adds single-digit milliseconds — invisible to users. And output caching actually speeds things up by serving repeated queries instantly. The real slowdown is an incident: a credential leak means rotating every key, a compliance violation means weeks of remediation. The proxy prevents the slowdown.</div>
+            <div class="armory-you-say">Fair concern. No one wants to be the person who makes developers less productive. In practice, inline inspection adds low single-digit milliseconds — well under the variance developers already experience with API latency. The more honest conversation is about risk tolerance: what's the cost of a credential leak requiring a full key rotation across every service? That's weeks of developer time. The proxy is an insurance policy that's invisible when things go right and invaluable when they don't.</div>
           </div>
           <div class="armory-objection">
             <div class="armory-they-say">"We'll just block AI tools entirely."</div>
-            <div class="armory-you-say">That's the fastest way to guarantee shadow AI. Developers will use personal accounts, VPNs, or switch to unmonitored tools. Blocking doesn't work — governing does. The proxy lets you say yes to AI with guardrails instead of no with blind spots.</div>
+            <div class="armory-you-say">Some organizations try this, and it works in highly regulated environments with strong endpoint controls. But for most, it creates shadow AI — developers using personal accounts, browser-based tools, or API keys that bypass corporate controls entirely. You end up with less visibility, not more. The alternative is governed access: approved tools, clear policies, and a proxy that enforces them. Let your teams use AI productively while maintaining the controls your security posture requires.</div>
           </div>
           <div class="armory-objection">
             <div class="armory-they-say">"We'll build something in-house."</div>
-            <div class="armory-you-say">Every new model, every new attack technique, every OWASP update — that's ongoing maintenance your security team would own forever. The AI threat landscape moves weekly. Do you want your team writing detection signatures, or focused on security operations?</div>
+            <div class="armory-you-say">That's a valid approach for organizations with deep platform engineering teams. The question is scope and maintenance: prompt injection techniques evolve weekly, new models launch monthly, and OWASP updates their LLM risk framework regularly. Building the initial proxy is achievable — keeping up with the threat landscape, maintaining detection signatures, and supporting every model API your teams adopt is the long-term cost. Most organizations find that's not where they want their security engineers focused.</div>
           </div>
         </div></div>
       </div>
@@ -427,15 +426,15 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
         <div class="armory-section-body"><div class="armory-section-inner">
           <div class="armory-next-step">
             <span class="armory-next-num">1</span>
-            <span class="armory-next-text"><strong>AI Crisis Room Experience.</strong> A hands-on, simulated incident response exercise designed for organizations adopting AI. Walk cross-functional teams — security, engineering, compliance, leadership — through a realistic AI security incident: a prompt injection chain that exfiltrates sensitive data through an unmonitored coding assistant. Assess AI threat readiness, identify gaps in incident response plans, improve decision-making under pressure, and build a defense-in-depth approach to AI security controls. Every employee plays a critical role — technical, business, or administrative — and should be equipped to respond when an AI-related breach occurs.</span>
+            <span class="armory-next-text"><strong>AI Crisis Room Experience.</strong> A hands-on, simulated exercise that walks cross-functional teams through a realistic AI security incident — such as a prompt injection chain leading to data exfiltration. Designed for security, engineering, compliance, and leadership to participate together. Surfaces gaps in AI incident response readiness and builds organizational muscle for when a real event occurs.</span>
           </div>
           <div class="armory-next-step">
             <span class="armory-next-num">2</span>
-            <span class="armory-next-text"><strong>Proof of Value.</strong> Deploy the proxy in monitor-only mode against their top 2-3 AI use cases. No blocking, just visibility. The logs alone will make the case — most organizations are stunned by what they see in the first week.</span>
+            <span class="armory-next-text"><strong>Proof of Value.</strong> Deploy the proxy in monitor-only mode against 2-3 of their active AI use cases. No blocking, no disruption — just visibility. Let the data speak: what's being sent, to which models, by whom, and what's coming back.</span>
           </div>
           <div class="armory-next-step">
             <span class="armory-next-num">3</span>
-            <span class="armory-next-text"><strong>Executive Briefing.</strong> Present findings from the Crisis Room and Proof of Value to CISO/CTO with a clear recommendation. Lead with what you found, not what you sell.</span>
+            <span class="armory-next-text"><strong>Executive Briefing.</strong> Present what you've learned — from the Crisis Room, the Proof of Value, or both — to CISO/CTO. Lead with their data, not your product. A clear picture of their AI risk posture is more persuasive than any pitch deck.</span>
           </div>
         </div></div>
       </div>
