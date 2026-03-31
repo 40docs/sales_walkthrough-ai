@@ -289,7 +289,7 @@ const ACTS = [
     eyebrow:'ACT 4 OF 4', title:'"The Control Point"',
     subtitle:`The ${g('AI proxy')} sits between every user and AI model. It defends against the ${g('OWASP Top 10 for LLMs')} — detecting ${g('prompt injection')} (LLM01), enforcing ${g('DLP')} to prevent ${g('sensitive information disclosure')} (LLM06), and validating outputs against ${g('insecure output handling')} (LLM02).`,
     sellerTip:`Don't sell features — sell the control point. <em>"You wouldn't let network traffic flow without a firewall. Why let AI traffic flow without a proxy?"</em> Reference the ${g('OWASP Top 10 for LLMs','g-below')} — CISOs know OWASP. Instant credibility.`,
-    narration:`⑨ Prompt Injection Detection (LLM01), ⑩ DLP & Data Protection (LLM06), and ⑪ Toxicity & Output Safety (LLM02) form the AI proxy — the governance layer. This is the control point.`,
+    narration:`Prompt Inspection (LLM01), Output Validation (LLM02), DLP & Data Protection (LLM06), Rate Limiting (LLM04), and Traffic Steering form the AI proxy — the governance layer. This is the control point.`,
     tagLabel:'THE CONTROL POINT'
   }
 ];
@@ -409,28 +409,34 @@ const NODES = [
   { id:'n9', badge:'', icon:'🛡️', label:'LLM Proxy',
     x:560, y:103, act:4, color:C.green, accentRgb:ACT_RGB[3], isProxyBox:true,
     title:'The LLM Proxy — AI Gateway', tagLabel:'THE CONTROL POINT', tagColor:C.green,
-    body:`<p>The AI proxy sits between your customer's users and AI models — inspecting, securing, and governing every interaction.</p><p><strong>Prompt Inspection (${g('OWASP LLM01')}):</strong> Scans every prompt for ${g('prompt injection')} attacks — direct injections, indirect injections in documents/logs, and ${g('jailbreak')} attempts. Blocks adversarial prompts before they reach the model.</p><p><strong>DLP & Data Protection (${g('OWASP LLM06')}):</strong> Context-aware inspection of every prompt for ${g('PII')}, credentials, proprietary code, and security telemetry. Redacts, masks, or blocks based on policy.</p><p><strong>Output Validation (${g('OWASP LLM02')}):</strong> Validates responses for ${g('insecure output handling')} — hallucinations, insecure code, ${g('toxicity')}, and policy-violating content — before reaching users or ${g('SOAR')} systems.</p><p><strong>Rate Limiting & Cost Control (${g('OWASP LLM04')}):</strong> Prevents ${g('excessive consumption')} — token abuse, DDoS against LLM endpoints, and runaway automation. Output caching reduces redundant calls and cuts token costs.</p><p><strong>Intelligent Traffic Steering:</strong> Policy-based routing of requests to the right model based on data sensitivity, cost targets, and performance requirements.</p>`,
-    seller:`<em>"One gateway — prompt security, data protection, output validation, cost control, and intelligent routing. Every interaction governed."</em>`,
+    body:`<p>The ${g('AI proxy')} sits between your customer's users and AI models — inspecting, securing, and governing every interaction.</p><p>Click any capability below to learn more about how it addresses the ${g('OWASP Top 10 for LLMs')}.</p><p>This is the single control point for all AI governance — prompt security, data protection, output validation, cost control, and intelligent routing. One policy engine. Every interaction governed.</p>`,
+    seller:`<em>"You wouldn't let network traffic flow without a firewall. Why let AI traffic flow without a proxy?"</em> One gateway — every interaction governed.`,
     proxyItems: [
-      { emoji:'🛡️', code:'LLM01', label:'Prompt Inspection', nodeId:'n9' },
-      { emoji:'🔒', code:'LLM06', label:'DLP & Data Protection', nodeId:'n10' },
+      { emoji:'🛡️', code:'LLM01', label:'Prompt Inspection', nodeId:'n9a' },
       { emoji:'🔍', code:'LLM02', label:'Output Validation', nodeId:'n11' },
       { emoji:'⚡', code:'LLM04', label:'Rate Limiting & Cost Control', nodeId:'n11b' },
+      { emoji:'🔒', code:'LLM06', label:'DLP & Data Protection', nodeId:'n10' },
       { emoji:'🔀', code:'', label:'Traffic Steering', nodeId:'n11c' }
     ]
   },
   // Invisible edge anchors for proxy box connectors
   { id:'n9L', badge:'', icon:'', label:'', x:480, y:243, act:4, color:C.green, accentRgb:ACT_RGB[3], isEdgeAnchor:true },
   { id:'n9R', badge:'', icon:'', label:'', x:640, y:243, act:4, color:C.green, accentRgb:ACT_RGB[3], isEdgeAnchor:true },
-  { id:'n10', badge:'10', icon:'🔒', label:'DLP',
+  { id:'n9a', badge:'', icon:'🛡️', label:'Prompt Inspection',
     x:530, y:140, act:4, color:C.green, accentRgb:ACT_RGB[3], isHidden:true,
-    title:'⑩ DLP & Data Protection (LLM06)', tagLabel:'THE CONTROL POINT', tagColor:C.green,
+    title:'Prompt Inspection (LLM01)', tagLabel:'THE CONTROL POINT', tagColor:C.green,
+    body:`<p>The AI proxy scans every prompt for ${g('prompt injection')} attacks (${g('OWASP LLM01')}) — the #1 risk in the OWASP Top 10 for LLMs.</p><p>It detects direct injections, indirect injections embedded in documents and logs, and ${g('jailbreak')} attempts. Adversarial prompts are blocked before they ever reach the model.</p><p>Without prompt inspection, a single malicious input can manipulate an LLM into ignoring its instructions, leaking system prompts, or executing unauthorized actions — especially dangerous when AI has ${g('excessive agency')} over downstream systems.</p>`,
+    seller:`<em>"Prompt injection is the #1 OWASP risk for LLMs. Every prompt your customer sends should be scanned for adversarial content before it reaches the model."</em> This is the first line of defense.`
+  },
+  { id:'n10', badge:'', icon:'🔒', label:'DLP',
+    x:530, y:140, act:4, color:C.green, accentRgb:ACT_RGB[3], isHidden:true,
+    title:'DLP & Data Protection (LLM06)', tagLabel:'THE CONTROL POINT', tagColor:C.green,
     body:`<p>The AI proxy inspects every prompt for sensitive data — ${g('PII')}, credentials, proprietary code, security telemetry — and redacts, masks, or blocks based on policy.</p><p>This directly addresses ${g('OWASP LLM06')}: Sensitive Information Disclosure. A developer's prompt gets scrubbed of API keys. A SOC analyst's query gets checked for customer PII.</p><p>${g('DLP')} policies enforced in real-time, per prompt. Think of it like email DLP — but for AI conversations.</p>`,
     seller:`<em>"Think of this like email DLP, but for every AI conversation. Every prompt scanned for credentials, PII, and source code before it leaves the network."</em> That's how you prevent OWASP LLM06.`
   },
-  { id:'n11', badge:'11', icon:'🔍', label:'Output Safety',
+  { id:'n11', badge:'', icon:'🔍', label:'Output Safety',
     x:530, y:310, act:4, color:C.green, accentRgb:ACT_RGB[3], isHidden:true,
-    title:'⑪ Toxicity & Output Safety (LLM02)', tagLabel:'THE CONTROL POINT', tagColor:C.green,
+    title:'Output Validation (LLM02)', tagLabel:'THE CONTROL POINT', tagColor:C.green,
     body:`<p>The AI proxy validates every response before it reaches the user or downstream system. It checks for ${g('insecure output handling')} risks (${g('OWASP LLM02')}): hallucinated content, insecure code, embedded injections, toxic or policy-violating content.</p><p>For SOC automation, the proxy validates AI-recommended remediations are within approved boundaries before reaching ${g('SOAR')}. This constrains ${g('excessive agency')} (${g('OWASP LLM08')}).</p>`,
     seller:`<em>"If the AI suggests shutting down a production server, the proxy checks policy before it executes."</em> Output validation is the difference between AI-assisted security and AI-caused outages.`
   },
