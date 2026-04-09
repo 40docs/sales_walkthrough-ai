@@ -238,12 +238,103 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
 .main::-webkit-scrollbar,.info-panel::-webkit-scrollbar{width:6px}
 .main::-webkit-scrollbar-track,.info-panel::-webkit-scrollbar-track{background:transparent}
 .main::-webkit-scrollbar-thumb,.info-panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s;flex-shrink:0;line-height:1}
+.theme-toggle:hover{border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.08)}
+
+/* ── LIGHT MODE ── */
+.light-mode{--bg-dark:#ffffff;--text-primary:#1d1d1f;--text-secondary:#6e6e73;--text-dim:#aeaeb2;--ft-grey:#aeaeb2}
+
+.light-mode .topbar{background:rgba(255,255,255,0.88);border-bottom-color:rgba(0,0,0,0.08)}
+.light-mode .topbar-title{color:#1d1d1f}
+.light-mode .timeline-dot{border-color:rgba(0,0,0,0.12);color:#aeaeb2}
+.light-mode .timeline-dot.completed{border-color:rgba(0,0,0,0.15);color:#6e6e73;background:rgba(0,0,0,0.04)}
+.light-mode .timeline-line{background:rgba(0,0,0,0.1)}
+.light-mode .timeline-line.completed{background:rgba(0,0,0,0.2)}
+
+.light-mode .zone{border-color:rgba(0,0,0,0.08)}
+.light-mode .zone-label{background:var(--bg-dark)}
+.light-mode .zone-divider{background:rgba(0,0,0,0.06)}
+.light-mode .node-icon{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.14)}
+.light-mode .node:hover .node-icon{background:rgba(0,0,0,0.07);border-color:rgba(0,0,0,0.22)}
+.light-mode .node.visited .node-badge{color:rgba(0,0,0,0.4)}
+.light-mode .node-label{color:#3a3a3c}
+.light-mode .act-title{color:#1d1d1f}
+
+.light-mode .info-panel{background:rgba(255,255,255,0.97);border-left-color:rgba(0,0,0,0.08);scrollbar-color:rgba(0,0,0,0.1) transparent}
+.light-mode .info-panel::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.1)}
+.light-mode .panel-title{color:#1d1d1f}
+.light-mode .panel-close{border-color:rgba(0,0,0,0.1);background:rgba(0,0,0,0.03);color:#aeaeb2}
+.light-mode .panel-close:hover{background:rgba(0,0,0,0.06);color:#1d1d1f}
+.light-mode .panel-body{color:#3a3a3c}
+.light-mode .panel-seller{background:rgba(144,99,205,0.05);color:#7c4dbd}
+
+.light-mode .nav-btn.prev{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1);color:#6e6e73}
+.light-mode .nav-btn.prev:hover{background:rgba(0,0,0,0.08)}
+.light-mode .narration{color:#6e6e73}
+
+.light-mode .intro-overlay{background:rgba(255,255,255,0.94)}
+.light-mode .intro-title{color:#1d1d1f}
+.light-mode .intro-hint-icon{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.06)}
+.light-mode .intro-meta{color:#aeaeb2}
+
+.light-mode .summary-overlay{background:rgba(255,255,255,0.95)}
+.light-mode .summary-title{color:#1d1d1f}
+.light-mode .summary-point{border-bottom-color:rgba(0,0,0,0.05)}
+.light-mode .summary-point-text strong{color:#1d1d1f}
+.light-mode .summary-closer em{color:#1d1d1f}
+.light-mode .summary-divider{background:linear-gradient(90deg,transparent,rgba(0,0,0,0.08),transparent)}
+.light-mode .summary-cta.secondary{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1);color:#6e6e73}
+.light-mode .summary-cta.secondary:hover{background:rgba(0,0,0,0.08)}
+
+.light-mode .armory-overlay{background:rgba(255,255,255,0.96)}
+.light-mode .armory-title{color:#1d1d1f}
+.light-mode .armory-card-title{color:#1d1d1f}
+.light-mode .armory-close{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1)}
+.light-mode .armory-close:hover{background:rgba(0,0,0,0.08)}
+.light-mode .armory-stats-hero{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.08)}
+.light-mode .armory-stat{border-bottom-color:rgba(0,0,0,0.05)}
+.light-mode .armory-card{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.08)}
+.light-mode .armory-card-header:hover{background:rgba(0,0,0,0.03)}
+.light-mode .armory-objection{border-bottom-color:rgba(0,0,0,0.05)}
+.light-mode .armory-subtitle{color:#48484a}
+.light-mode .armory-stat-text{color:#3a3a3c}
+.light-mode .armory-question{color:#3a3a3c}
+.light-mode .armory-you-say{color:#3a3a3c}
+.light-mode .armory-they-say{color:#b8860b}
+.light-mode .armory-card-subtitle{color:#6e6e73}
+.light-mode .armory-next-text strong{color:#1d1d1f}
+.light-mode .armory-next-text{color:#3a3a3c}
+.light-mode .armory-back-btn{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1)}
+.light-mode .armory-back-btn:hover{background:rgba(0,0,0,0.08)}
+.light-mode .armory-stack-item{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.06)}
+.light-mode .armory-stack-name{color:#1d1d1f}
+
+.light-mode .seller-tip{background:rgba(144,99,205,0.06);border-color:rgba(144,99,205,0.15);color:#7c4dbd}
+.light-mode .status-badge.zone-bottom-label{background:var(--bg-dark)!important}
+
+.light-mode #floatTip{background:#f5f5f7;border-color:rgba(0,0,0,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.1);color:#3a3a3c}
+.light-mode #floatTip.arrow-down::after{border-top-color:#f5f5f7}
+.light-mode #floatTip.arrow-up::after{border-bottom-color:#f5f5f7}
+
+.light-mode .main::-webkit-scrollbar-thumb,.light-mode .info-panel::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.1)}
+
+.light-mode .theme-toggle{border-color:rgba(0,0,0,0.12);background:rgba(0,0,0,0.04)}
+.light-mode .theme-toggle:hover{border-color:rgba(0,0,0,0.25);background:rgba(0,0,0,0.08)}
+
+.light-mode .node-proxy-box .node-icon{background:rgba(60,177,126,0.08);border-color:rgba(60,177,126,0.4)}
+.light-mode .proxy-box-item{background:rgba(60,177,126,0.06);border-color:rgba(60,177,126,0.2)}
+.light-mode .proxy-box-item:hover{background:rgba(60,177,126,0.12);border-color:rgba(60,177,126,0.35)}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <div class="topbar-title">THE AI PROXY JOURNEY</div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <div class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">☀️</div>
+    <div class="topbar-title">THE AI PROXY JOURNEY</div>
+  </div>
   <div class="timeline" id="timeline"></div>
 </div>
 
@@ -265,6 +356,7 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
 <div id="floatTip"></div>
 
 <div class="intro-overlay" id="introOverlay">
+  <div class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" style="position:absolute;top:20px;left:24px;z-index:501">☀️</div>
   <div class="intro-card">
     <div class="intro-eyebrow">Interactive Walkthrough</div>
     <div class="intro-title">The AI Proxy<br>Journey</div>
@@ -445,6 +537,12 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
 </div>
 
 <script>
+function toggleTheme() {
+  const isLight = document.documentElement.classList.toggle('light-mode');
+  const icon = isLight ? '🌙' : '☀️';
+  document.querySelectorAll('.theme-toggle').forEach(el => el.textContent = icon);
+}
+
 const C = {
   blue:'#307FE2', yellow:'#FFB900', red:'#DA291C', green:'#3CB17E',
   purple:'#9063CD', teal:'#2CCCD3', silver:'#A2B2C8', grey:'#75787B'
