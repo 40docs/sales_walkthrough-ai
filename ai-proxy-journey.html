@@ -67,7 +67,7 @@ svg.connectors{position:absolute;top:0;left:0;width:100%;height:100%;pointer-eve
 
 /* ── NODES ── */
 .node{position:absolute;z-index:5;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .35s;user-select:none;width:95px;margin-left:-47px}
-.node-icon{width:56px;height:56px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:24px;position:relative;transition:all .35s}
+.node-icon{width:56px;height:56px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:24px;position:relative;transition:all .35s}
 .node:hover .node-icon{background:rgba(255,255,255,0.07);transform:translateY(-2px)}
 .node-badge{position:absolute;top:-6px;left:-6px;width:20px;height:20px;border-radius:50%;font-size:10px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;z-index:6}
 .node-badge.opt{font-size:7px;letter-spacing:.3px}
@@ -859,7 +859,7 @@ function renderDiagram() {
     div.className = 'zone visible-el';
     div.id = 'zone-' + k;
     const glow = z.isProxy ? `box-shadow:0 0 28px ${z.color}15;background:rgba(60,177,126,0.04);` : '';
-    div.style.cssText = `left:${z.x}px;top:${z.y}px;width:${z.w}px;height:${z.h}px;border-color:${z.color}33;${glow}`;
+    div.style.cssText = `left:${z.x}px;top:${z.y}px;width:${z.w}px;height:${z.h}px;border-color:${z.color}59;${glow}`;
     let inner = `<span class="zone-label" style="color:${z.color}">${z.label}</span>`;
     // sub-labels & divider for org zone
     if (z.subs) {
@@ -876,7 +876,7 @@ function renderDiagram() {
     const div = document.createElement('div');
     const bl = b.bottomLabel ? ' zone-bottom-label' : '';
     div.className = `status-badge${bl} ${vis ? 'visible-el' : 'hidden-el'}`;
-    div.style.cssText = `left:${b.x}px;top:${b.y}px;color:${b.color};` + (b.bottomLabel ? '' : `background:${b.color}18;border:1px solid ${b.color}33;`);
+    div.style.cssText = `left:${b.x}px;top:${b.y}px;color:${b.color};` + (b.bottomLabel ? '' : `background:${b.color}18;border:1px solid ${b.color}59;`);
     div.textContent = b.text;
     d.appendChild(div);
   });
@@ -989,7 +989,7 @@ function updateConns() {
     const fR = fi.getBoundingClientRect(), tR = ti.getBoundingClientRect();
     const x1 = fR.left + fR.width / 2 - dR.left, y1 = fR.top + fR.height / 2 - dR.top;
     const x2 = tR.left + tR.width / 2 - dR.left, y2 = tR.top + tR.height / 2 - dR.top;
-    const op = aI === curAct ? 0.55 : 0.2;
+    const op = aI === curAct ? 0.7 : 0.3;
     const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     ln.setAttribute('x1', x1); ln.setAttribute('y1', y1);
     ln.setAttribute('x2', x2); ln.setAttribute('y2', y2);
